@@ -182,6 +182,13 @@ input[type=checkbox]{ accent-color:var(--gr-purple-strong); }
   padding:20px;
   animation:grFadeIn .18s ease;
 }
+/* El CDN de Tailwind puede inyectar su hoja de estilos con ".hidden{display:none}"
+   antes de este bloque <style> en el DOM; al empatar en especificidad con
+   ".modal-overlay{display:flex}", el orden de carga decidía cuál ganaba, y en
+   algunos casos el modal quedaba visible por defecto al cargar la página.
+   Esta regla eleva la especificidad para que "hidden" SIEMPRE gane sobre el
+   overlay, sin depender del orden de inyección de Tailwind. */
+.modal-overlay.hidden{ display:none !important; }
 @keyframes grFadeIn{ from{opacity:0;} to{opacity:1;} }
 .modal-card{
   background:#fff; width:100%; max-width:440px;
@@ -931,7 +938,7 @@ function cerrarModalDescarga(){
    como Web App (Implementar > Nueva implementación > Aplicación web).
    Reemplaza el valor de abajo por la tuya. Ver el código doPost(e)
    de respaldo entregado junto con este archivo. */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw4pbv_hRwm7Awf9J6m2v1ahyY2Ll0LW6daQBw-iFSpm8rokB2Fih9d0DTEoTZ0sXYA/exec";
+const SCRIPT_URL = "TU_URL_DE_GOOGLE_APPS_SCRIPT";
 
 /* Envía el lead capturado en el formulario mediante una petición POST
    en JSON. Se usa Content-Type 'text/plain' + mode:'no-cors' porque
