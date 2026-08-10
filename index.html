@@ -199,6 +199,40 @@ input[type=checkbox]{ accent-color:var(--gr-purple-strong); }
 .gr-kpi-grid{ display:grid; grid-template-columns:1fr; gap:20px; }
 @media (min-width:640px){ .gr-kpi-grid{ grid-template-columns:repeat(3,1fr); } }
 
+/* ====== Capa de respaldo para utilidades de Tailwind (mismos valores exactos) ======
+   El resto del documento sigue usando clases utilitarias de Tailwind (flex,
+   grid, hidden, gap-*, items-*, etc.) para detalles menores. Para que esos
+   elementos NUNCA dependan de que el CDN de Tailwind cargue a tiempo (la
+   misma causa raíz del problema de layout), se replican aquí, con CSS
+   propio, los valores EXACTOS que Tailwind usaría. Si Tailwind sí carga,
+   el resultado visual es idéntico (mismos valores); si no carga, esta capa
+   sostiene el diseño de todas formas. No cambia ningún tamaño, color ni
+   espaciado — son los mismos números que ya definía Tailwind. */
+.hidden{ display:none !important; }
+.flex{ display:flex; }
+.inline-flex{ display:inline-flex; }
+.flex-col{ flex-direction:column; }
+.flex-wrap{ flex-wrap:wrap; }
+.items-center{ align-items:center; }
+.items-start{ align-items:flex-start; }
+.justify-between{ justify-content:space-between; }
+.justify-center{ justify-content:center; }
+.grid{ display:grid; }
+.grid-cols-2{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+.overflow-hidden{ overflow:hidden; }
+.overflow-x-auto{ overflow-x:auto; }
+.shrink-0{ flex-shrink:0; }
+.w-full{ width:100%; }
+.h-full{ height:100%; }
+.gap-2{ gap:8px; }
+.gap-3{ gap:12px; }
+.gap-4{ gap:16px; }
+@media (min-width:768px){
+  .md\:grid-cols-4{ grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .md\:items-end{ align-items:flex-end; }
+  .md\:h-20{ height:80px; }
+}
+
 /* ====== Modal Lead Magnet (LAB10) ====== */
 .modal-overlay{
   position:fixed; inset:0; z-index:60;
